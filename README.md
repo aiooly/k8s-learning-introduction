@@ -8,7 +8,7 @@
 - 代理：Shadowsocks （安装过程需要访问google资源）
 
 ## 2. 编写 [Vagrantfile](https://www.vagrantup.com/docs/vagrantfile/)
-### 配置1个master，2个node，`$script`是初始化虚拟机执行的命名（安装，配置软件等）
+### 配置1个master，2个node，`$script`是初始化虚拟机执行的命令（安装，配置软件等）
 ```ruby
 Vagrant.configure("2") do |config|
   config.vm.box = "bento/ubuntu-16.04"
@@ -213,7 +213,9 @@ kubernetes-dashboard   NodePort    10.96.4.159   <none>        80:30091/TCP    3
 vagrant@master:~$ kubectl create clusterrolebinding add-on-cluster-admin --clusterrole=cluster-admin --serviceaccount=kube-system:kubernetes-dashboard
 clusterrolebinding.rbac.authorization.k8s.io/add-on-cluster-admin created
 ```
-**在主机上打开浏览器**
+
+**浏览器打开dashboard UI**
+
 找到dashboard运行的节点
 ```
 vagrant@master:~$ kubectl get services -n kube-system -o wide
