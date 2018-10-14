@@ -229,6 +229,41 @@ kubernetes-dashboard-c5b44fc5-8n2gp   1/1     Running   6          88m   10.244.
 在主机上打开浏览器，输入：http://192.168.10.11:30091, 如下图：
 ![](https://kekekeke.sh1a.qingstor.com/k8s-vagrant-demo/kubernetes-dashboard.png)
 
+## 6. 部署 hello-world 
+**创建hello-world部署**
+
+```
+kubectl run hello-world --replicas=1 --labels="app=hello-world" --image=nginx:1.7.9  --port=80
+```
+
+**可以通过下面的命令查看部署情况 **
+```
+vagrant@master:~$ kubectl get deployments -o wide
+NAME          DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE    CONTAINERS    IMAGES        SELECTOR
+hello-world   1         1         1            1           111s   hello-world   nginx:1.7.9   app=hello-world
+vagrant@master:~$ kubectl get pods -o wide
+NAME                          READY   STATUS    RESTARTS   AGE    IP           NODE    NOMINATED NODE
+hello-world-956d45bf6-5k9b5   1/1     Running   0          115s   10.244.2.2   node2   <none>
+```
+**创建hello-world-service来暴露服务，使集群外可以访问**
+这里我们使用NodePort
+```
+kubectl expose deployment hello-world --type=NodePort --name=hello-world-service
+```
+查看刚部署的应用的状态
+```
+vagrant@master:~$ kubectl get services hello-world-service -o wide
+NAME                  TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE     SELECTOR
+hello-world-service   NodePort   10.104.119.39   <none>        80:30748/TCP   4m37s   app=hello-world
+vagrant@master:~$ kubectl get pods -o wide
+NAME                          READY   STATUS    RESTARTS   AGE   IP           NODE    NOMINATED NODE
+hello-world-956d45bf6-5k9b5   1/1     Running   0          32m   10.244.2.2   node2   <none>
+```
+或者可以在dashboard上查看
+![](https://kekekeke.sh1a.qingstor.com/k8s-vagrant-demo/hello-world-service.png)
+
+**浏览器访问: NodeIP:NodePort**
+![](https://kekekeke.sh1a.qingstor.com/k8s-vagrant-demo/hello-world-app.png)
 
 
 
