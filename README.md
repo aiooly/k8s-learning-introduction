@@ -1,6 +1,29 @@
+# 以下内容分为两部分：
+- 第一部分是自己对Kubernetes的认识做一个记录和总结。
+- 第二部分是在本地搭建起Kubernetes集群，并上手体验。
 
 
-# 基于 Vagrant 本地安装部署 Kubernetes 集群
+# 认识 Kubernetes
+
+## 什么是 Kubernetes？
+Kubernetes是在集群中跨多主机用于**自动部署、扩展和管理容器化（containerized）**应用程序的开源系统，kubernetes提供了诸多机制用来进行应用部署，调度，更新，维护和伸缩，以确保集群的状态是**持续健康**的。
+
+Kubernete能帮我们达成以下目标：
+- 跨多台主机进行容器编排。
+- 更加充分地利用硬件，最大程度获取运行企业应用所需的资源。
+- 有效管控应用部署和更新，并实现自动化操作。
+- 挂载和增加存储，用于运行有状态的应用。
+- 快速、按需扩展容器化应用及其资源。
+- 对服务进行声明式管理，以保证所部署的应用始终按照您部署的方式加以运行。
+- 利用自动布局、自动重启、自动复制以及自动扩展功能，对应用实施状况检查和自我修复。
+
+## Kubernetes 架构图
+![Kubernetes 架构图](https://kekekeke.sh1a.qingstor.com/k8s-vagrant-demo/k8s-master-node.png)
+
+## Kubernetes 核心概念和组件
+![enter image description here](https://kekekeke.sh1a.qingstor.com/k8s-vagrant-demo/k8s-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E5%92%8C%E7%BB%84%E4%BB%B6.png)
+
+# 体验 Kubernetes
 
 想要在本地运行Kubernetes有如下方式
 
