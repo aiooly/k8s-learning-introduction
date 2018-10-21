@@ -1,4 +1,14 @@
-# 基于 Vagrant 安装部署 Kubernetes 集群
+
+
+# 基于 Vagrant 本地安装部署 Kubernetes 集群
+
+想要在本地运行Kubernetes有如下方式
+
+- [Minikube](https://kubernetes.io/docs/setup/minikube/)
+- [kubeadm](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/)
+- 自定义安装：创建虚拟机，安装kubernetes需要的服务组件
+
+**在这我们使用第二种方式**
 
 ## 1. 部署的环境准备
 我们使用[Vagrant](https://www.vagrantup.com)来虚拟化, [bento/ubuntu-16.04](https://app.vagrantup.com/bento/boxes/ubuntu-16.04) 可以提前下载，由于安装过程需要访问被墙的资源，所以要配置`http_proxy`, 可以使用主机上的Shadowsocks代理。
