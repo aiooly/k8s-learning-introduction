@@ -1,7 +1,25 @@
-# 以下内容分为两部分：
+
+# Kubernetes学习总结：
 - 第一部分是自己对Kubernetes的认识做一个记录和总结。
 - 第二部分是在本地搭建起Kubernetes集群，并上手体验。
 
+目录
+================
+
+* [认识 Kubernetes](#%E8%AE%A4%E8%AF%86-kubernetes)
+  * [什么是 Kubernetes？](#%E4%BB%80%E4%B9%88%E6%98%AF-kubernetes)
+  * [Kubernetes 架构图](#kubernetes-%E6%9E%B6%E6%9E%84%E5%9B%BE)
+  * [Kubernetes 核心概念和组件](#kubernetes-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E5%92%8C%E7%BB%84%E4%BB%B6)
+* [体验 Kubernetes](#%E4%BD%93%E9%AA%8C-kubernetes)
+  * [1\. 部署的环境准备](#1-%E9%83%A8%E7%BD%B2%E7%9A%84%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87)
+  * [2\. 编写 <a href="https://www\.vagrantup\.com/docs/vagrantfile/" rel="nofollow">Vagrantfile</a>](#2-%E7%BC%96%E5%86%99-vagrantfile)
+    * [2\.1 配置1个master，2个node，$script是初始化虚拟机执行的命令（安装，配置软件等）](#21-%E9%85%8D%E7%BD%AE1%E4%B8%AAmaster2%E4%B8%AAnodescript%E6%98%AF%E5%88%9D%E5%A7%8B%E5%8C%96%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%89%A7%E8%A1%8C%E7%9A%84%E5%91%BD%E4%BB%A4%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E8%BD%AF%E4%BB%B6%E7%AD%89)
+    * [2\.2 虚拟机安装Docker](#22-%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85docker)
+    * [2\.3 虚拟机安装kubernetes](#23-%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85kubernetes)
+  * [3\.初始化虚拟机](#3%E5%88%9D%E5%A7%8B%E5%8C%96%E8%99%9A%E6%8B%9F%E6%9C%BA)
+  * [4\. 配置集群](#4-%E9%85%8D%E7%BD%AE%E9%9B%86%E7%BE%A4)
+  * [5\. 安装kubernetes\-dashboard](#5-%E5%AE%89%E8%A3%85kubernetes-dashboard)
+  * [6\. 部署 hello\-world](#6-%E9%83%A8%E7%BD%B2-hello-world)
 
 # 认识 Kubernetes
 
@@ -41,7 +59,7 @@ Kubernete能帮我们达成以下目标：
 - 代理：Shadowsocks （安装过程需要访问google资源）
 
 ## 2. 编写 [Vagrantfile](https://www.vagrantup.com/docs/vagrantfile/)
-### 配置1个master，2个node，`$script`是初始化虚拟机执行的命令（安装，配置软件等）
+### 2.1 配置1个master，2个node，`$script`是初始化虚拟机执行的命令（安装，配置软件等）
 ```ruby
 Vagrant.configure("2") do |config|
   config.vm.box = "bento/ubuntu-16.04"
@@ -66,7 +84,7 @@ Vagrant.configure("2") do |config|
   end
 end
 ```
-### 虚拟机安装Docker
+### 2.2 虚拟机安装Docker
 ```shell
 # Install docker
 curl -sSL https://get.daocloud.io/docker | sh
@@ -87,7 +105,7 @@ sudo systemctl daemon-reload
 systemctl restart docker
 sudo systemctl show docker --property Environment
 ```
-### 虚拟机安装kubernetes
+### 2.3 虚拟机安装kubernetes
 ```shell
 # Install kubernetes
 sudo apt-get install -y apt-transport-https
